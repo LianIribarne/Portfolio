@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lian Iribarne - Portfolio</title>
+    <meta name="description" content="Lian Iribarne’s professional portfolio, focused on data science, analysis, and visualization projects.">
+    <link rel="icon" type="image/png" href="images/icon-red.png" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <div id="background-noise"></div>
+
+    <!-- Loading -->
+    <div id="loader-breaker"></div>
+
+    <!-- Breaker -->
+    <div id="breaker"></div>
+
+    <!-- Home button -->
+    <div id="home-btn" class="hidden">
+        <a href="#home" id="home-link"><img src="images/icons/home.png" alt="Home" loading="lazy" /></a>
+    </div>
+
+    <!-- Home -->
+    <header id="home">
+        <div class="home-box">
+            <div class="header-content">
+                <h1 class="firstline" data-key="portfolio"></h1>
+                <h3 class="secondline">
+                    <span class="txt-rotate" data-period="3000" data-key="welcome"></span>
+                    <span class="slash">|</span>
+                </h3>
+            </div>
+            <!-- Navigation buttons -->
+            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
+            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
+            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
+            <!-- Social media links -->
+            <div class="social-media-links">
+                <a href="#" target="_blank"><img src="images/icons/notion.png" title="Notion" class="social-media" alt="Notion" /></a>
+                <a href="https://github.com/LianIribarne" target="_blank"><img src="images/icons/github.png" title="GitHub" class="social-media" alt="GitHub" /></a>
+                <a href="" download><img src="images/icons/cv.png" title="CV" class="social-media" alt="CV"></a>
+                <!-- Language button -->
+                <button id="lang-toggle" class="language-button">
+                    <img id="lang-icon" src="images/flags/spain.png" alt="Español" loading="lazy" />
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- About me -->
+    <section id="aboutme">
+        <div class="nav">
+            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
+            <h1 class="header" data-key="aboutme"></h1>
+            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
+        </div>
+        <div id="about-me">
+            <!-- Info -->
+            <div class="about-info">
+                <span class="about-text" data-key="about_intro" data-html="true"></span>
+                <h2 class="about-header" data-key="about_goals"></h2>
+                <span class="about-text" data-key="about_detail"></span>
+            </div>
+            <!-- Image Lian -->
+            <div class="about-img">
+                <img src="images/progress.jpg" alt="Lian" loading="lazy" />
+            </div>
+        </div>
+        <!-- Skills -->
+        <div id="skills">
+            <div class="skills-content">
+                <h2 class="skills-header" data-key="skills"></h2>
+                <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank"><img src="images/techs/python.png" title="Python" alt="Python" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/Pandas_(software)" target="_blank"><img src="images/techs/pandas.png" title="Pandas" alt="Pandas" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/NumPy" target="_blank"><img src="images/techs/numpy.png" title="NumPy" alt="NumPy" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/SQL" target="_blank"><img src="images/techs/sql.png" title="SQL" alt="SQL" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/Anaconda_(Python_distribution)" target="_blank"><img src="images/techs/anaconda.png" title="Anaconda" alt="Anaconda" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/Docker_(software)" target="_blank"><img src="images/techs/docker.png" title="Docker" alt="Docker" loading="lazy" /></a>
+                <a href="https://en.wikipedia.org/wiki/Git" target="_blank"><img src="images/techs/git.png" title="Git" alt="Git" loading="lazy" /></a>
+            </div>
+        </div>
+        <!-- Academic -->
+        <div id="academic">
+            <h2 class="academic-header" data-key="education"></h2>
+            <div class="academic-content">
+                <div class="academic-box">
+                    <div class="academic-box-img">
+                        <img src="images/icons/coding.png" alt="pc-coding" loading="lazy" />
+                    </div>
+                    <div class="academic-box-description">
+                        <h2 data-key="degree_1_title"></h2>
+                        <p data-key="degree_1_desc" data-html="true"></p>
+                    </div>
+                </div>
+                <div class="academic-box">
+                    <div class="academic-box-img">
+                        <img src="images/icons/paint.png" alt="paint" loading="lazy" />
+                    </div>
+                    <div class="academic-box-description">
+                        <h2 data-key="degree_2_title"></h2>
+                        <p data-key="degree_2_desc" data-html="true"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Certificates -->
+        <div id="certificates">
+            <h2 class="certificate-header" data-key="certs"></h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <img src="images/certificates/Python_Developer.png" alt="certificate-python-developer" loading="lazy" />
+                    <img src="images/certificates/SQL_2.png" alt="certificate-sql-2" loading="lazy" />
+                    <img src="images/certificates/Coding_For_Data.jpg" alt="certificate-coding-for-data" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="nav">
+            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
+            <h1 class="header" data-key="projects"></h1>
+            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
+        </div>
+        <div class="project-content">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <!-- Image project -->
+                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <!-- Title project -->
+                <h3 class="project-title" data-key="p1_title"></h3>
+                <!-- Desc -->
+                <p class="project-desc" data-key="p1_desc"></p>
+                <!-- Technologies -->
+                <div class="tech">
+                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                </div>
+                <!-- Buttons -->
+                <div class="project-buttons">
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <!-- Image project -->
+                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <!-- Title project -->
+                <h3 class="project-title" data-key="p1_title"></h3>
+                <!-- Desc -->
+                <p class="project-desc" data-key="p1_desc"></p>
+                <!-- Technologies -->
+                <div class="tech">
+                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                </div>
+                <!-- Buttons -->
+                <div class="project-buttons">
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <!-- Image project -->
+                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <!-- Title project -->
+                <h3 class="project-title" data-key="p1_title"></h3>
+                <!-- Desc -->
+                <p class="project-desc" data-key="p1_desc"></p>
+                <!-- Technologies -->
+                <div class="tech">
+                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                </div>
+                <!-- Buttons -->
+                <div class="project-buttons">
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <!-- Image project -->
+                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <!-- Title project -->
+                <h3 class="project-title" data-key="p1_title"></h3>
+                <!-- Desc -->
+                <p class="project-desc" data-key="p1_desc"></p>
+                <!-- Technologies -->
+                <div class="tech">
+                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                </div>
+                <!-- Buttons -->
+                <div class="project-buttons">
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <!-- Image project -->
+                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <!-- Title project -->
+                <h3 class="project-title" data-key="p1_title"></h3>
+                <!-- Desc -->
+                <p class="project-desc" data-key="p1_desc"></p>
+                <!-- Technologies -->
+                <div class="tech">
+                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
+                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                </div>
+                <!-- Buttons -->
+                <div class="project-buttons">
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="nav">
+            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
+            <h1 class="header" data-key="contact"></h1>
+            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
+        </div>
+        <div class="contact-content">
+            <!-- Form -->
+            <form id="form">
+                <div class="form-header">
+                    <h2 data-key="send_message"></h2>
+                </div>
+                <div class="input-line">
+                    <!-- Input name -->
+                    <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" required />
+                    <!-- Input email -->
+                    <input type="email" class="input-email" name="email" placeholder="Email" data-key="placeholder_email" required />
+                </div>
+                <!-- Input subject -->
+                <input type="text" class="input-subject" name="subject" placeholder="Subject" data-key="placeholder_subject" required />
+                <!-- Input message -->
+                <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message" required></textarea>
+                <!-- Submit -->
+                <button class="btn" type="submit"><img src="images/icons/send.png" title="Send" class="btn-icon" alt="Send" loading="lazy" /></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Messages -->
+    <div id="form-overlay-success" class="form-overlay" data-key="success"></div>
+    <div id="form-overlay-error" class="form-overlay" data-key="error"></div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
