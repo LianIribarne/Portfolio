@@ -203,7 +203,7 @@ function getCookie(name) {
   return cookieValue;
 }
 
-fetch("http://localhost:8000/api/csrf/", {
+fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
   method: "GET",
   credentials: "include",
 });
@@ -237,7 +237,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
     }, 4000);
   }
 
-  fetch("http://localhost:8000/api/form/", {
+  fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
     method: "POST",
     credentials: "include",
     headers: {
