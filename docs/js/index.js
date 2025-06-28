@@ -18,14 +18,16 @@ window.addEventListener("scroll", () => {
 // =========================================
 
 $(window).on('load', function () {
-  const isMobile = window.innerWidth < 480;
+  const isMobile = (
+    (window.innerWidth < 480) && window.matchMedia("(orientation: portrait)").matches || 
+    (window.innerHeight < 480 && window.matchMedia("(orientation: landscape)").matches)
+  );
 
-  const $loader = $('#loader');
   const $loaderBreaker = $('#loader-breaker');
   const $home = $('#home');
 
   if (isMobile) {
-    $loader.remove();
+    $loaderBreaker.remove();
     $home.css('opacity', 1);
     return;
   }
@@ -98,10 +100,9 @@ $(function () {
 
 $(function () {
   class TxtTypeOnce {
-    constructor(el, text, period) {
+    constructor(el, text) {
       this.text = text;
       this.el = el;
-      this.period = parseInt(period, 10) || 2000;
       this.txt = '';
       this.tick();
     }
@@ -120,9 +121,8 @@ $(function () {
   const elements = document.getElementsByClassName('txt-rotate');
   Array.from(elements).forEach(el => {
     const text = el.getAttribute('data-text');
-    const period = el.getAttribute('data-period');
     if (text) {
-      new TxtTypeOnce(el, text, period);
+      new TxtTypeOnce(el, text);
     }
   });
 });
@@ -217,6 +217,11 @@ document.getElementById("form").addEventListener("submit", function (e) {
   const email = form.elements["email"].value;
   const message = form.elements["message"].value;
 
+  const loadingEl = document.getElementById("form-loading");
+  const buttonEl = document.getElementById("btn-submit");
+  buttonEl.style.display = "none";
+  loadingEl.style.display = "block";
+
   function showMessage(type, extraInfo = "") {
     const el = type === "success"
       ? document.getElementById("form-overlay-success")
@@ -256,5 +261,9 @@ document.getElementById("form").addEventListener("submit", function (e) {
   })
   .catch(error => {
     showMessage("error", error.message || "¿?");
+  })
+  .finally(() => {
+    loadingEl.style.display = "none";
+    buttonEl.style.display = "block";
   });
 });
