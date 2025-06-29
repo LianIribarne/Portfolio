@@ -69,13 +69,13 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://lianiribarne.github.io/Portfolio/",
+    "https://lianiribarne.github.io",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://lianiribarne.github.io/Portfolio/",
+    "https://lianiribarne.github.io",
 ]
 
 ROOT_URLCONF = "backend_contact.urls"
