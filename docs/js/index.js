@@ -203,11 +203,6 @@ function getCookie(name) {
   return cookieValue;
 }
 
-fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
-  method: "GET",
-  credentials: "include",
-});
-
 document.getElementById("form").addEventListener("submit", function (e) {
   e.preventDefault();
   const form = this;
@@ -237,33 +232,38 @@ document.getElementById("form").addEventListener("submit", function (e) {
     }, 4000);
   }
 
-  fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
-    method: "POST",
+  fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
+    method: "GET",
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": getCookie("csrftoken")
-    },
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      subject: subject,
-      message: message
+  }).then(() => {
+    fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": getCookie("csrftoken")
+      },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        subject: subject,
+        message: message
+      })
     })
-  })
-  .then(response => {
-    if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-    return response.json();
-  })
-  .then(() => {
-    form.reset();
-    showMessage("success");
-  })
-  .catch(error => {
-    showMessage("error", error.message || "¿?");
-  })
-  .finally(() => {
-    loadingEl.style.display = "none";
-    buttonEl.style.display = "block";
+    .then(response => {
+      if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+      return response.json();
+    })
+    .then(() => {
+      form.reset();
+      showMessage("success");
+    })
+    .catch(error => {
+      showMessage("error", error.message || "¿?");
+    })
+    .finally(() => {
+      loadingEl.style.display = "none";
+      buttonEl.style.display = "block";
+    });
   });
 });
