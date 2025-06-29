@@ -188,38 +188,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // FORM
 // =========================================
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.startsWith(name + "=")) {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
-
-let csrfLoaded = false;
+let csrfToken = null;
 
 function requestCSRFToken() {
-  if (csrfLoaded) return;
-  csrfLoaded = true;
+  if (csrfToken) return Promise.resolve(csrfToken);
 
-  fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
+  return fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
     method: "GET",
     credentials: "include"
+  })
+  .then(res => res.json())
+  .then(data => {
+    csrfToken = data.csrfToken;
+    return csrfToken;
   });
 }
-
-document.querySelectorAll(".contact-link").forEach(link => {
-  link.addEventListener("click", () => {
-    requestCSRFToken();
-  });
-});
 
 document.getElementById("form").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -250,33 +233,30 @@ document.getElementById("form").addEventListener("submit", function (e) {
     }, 4000);
   }
 
-  fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
-    method: "POST",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      "X-CSRFToken": getCookie("csrftoken")
-    },
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      subject: subject,
-      message: message
+  requestCSRFToken().then(token => {
+    fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": token
+      },
+      body: JSON.stringify({ name, email, subject, message })
     })
-  })
-  .then(response => {
-    if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-    return response.json();
-  })
-  .then(() => {
-    form.reset();
-    showMessage("success");
-  })
-  .catch(error => {
-    showMessage("error", error.message || "¿?");
-  })
-  .finally(() => {
-    loadingEl.style.display = "none";
-    buttonEl.style.display = "block";
+    .then(response => {
+      if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+      return response.json();
+    })
+    .then(() => {
+      form.reset();
+      showMessage("success");
+    })
+    .catch(error => {
+      showMessage("error", error.message || "¿?");
+    })
+    .finally(() => {
+      loadingEl.style.display = "none";
+      buttonEl.style.display = "block";
+    });
   });
 });

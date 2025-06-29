@@ -8,7 +8,8 @@ import json, re
 
 @ensure_csrf_cookie
 def csrf_token_view(request):
-    return JsonResponse({"detail": "CSRF cookie set"})
+    token = get_token(request)
+    return JsonResponse({"csrfToken": token})
 
 def contact_view(request):
     if request.method != 'POST':
