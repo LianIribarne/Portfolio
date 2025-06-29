@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.middleware.csrf import get_token
 from django.core.mail import send_mail, BadHeaderError
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
