@@ -203,10 +203,21 @@ function getCookie(name) {
   return cookieValue;
 }
 
-document.getElementsByClassName("contact-link").addEventListener("click", () => {
+let csrfLoaded = false;
+
+function requestCSRFToken() {
+  if (csrfLoaded) return;
+  csrfLoaded = true;
+
   fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
     method: "GET",
     credentials: "include"
+  });
+}
+
+document.querySelectorAll(".contact-link").forEach(link => {
+  link.addEventListener("click", () => {
+    requestCSRFToken();
   });
 });
 
