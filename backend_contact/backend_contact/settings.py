@@ -42,7 +42,7 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_HTTPONLY = False
-    CSRF_COOKIE_SAMESITE = 'Lax'
+    CSRF_COOKIE_SAMESITE = 'None'
 
 # Application definition
 
