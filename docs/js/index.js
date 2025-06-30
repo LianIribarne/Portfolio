@@ -211,9 +211,9 @@ function requestCSRFTokenWithFeedback() {
 
   buttonEl.style.display = "none";
   if (currentLang === 'en') {
-    loadingEl.innerText = "ACTIVANDO API";
-  } else {
     loadingEl.innerText = "ACTIVATING API";
+  } else {
+    loadingEl.innerText = "ACTIVANDO API";
   }
   loadingEl.style.display = "block";
 
