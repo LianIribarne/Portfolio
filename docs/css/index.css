@@ -15,13 +15,13 @@ html { background: #101010; }
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url('../images/cub.png');
+  background-image: url('../images/icons/cub.png');
   background-repeat: repeat;
   background-size: 3px;
   z-index: 9999;
   pointer-events: none;
   opacity: 0.8;
-  /* mix-blend-mode: overlay; */
+  display: none;
 }
 
 .header {
@@ -336,7 +336,8 @@ body.scrolling::-webkit-scrollbar-thumb {
 
 @keyframes animateslash {
   0% { opacity: 1; }
-  100% { opacity: 0; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @keyframes fadeIn {
@@ -545,13 +546,8 @@ body.scrolling::-webkit-scrollbar-thumb {
   height: 250px;
   border-radius: 12px;
   flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-
-.carousel-track img:hover {
-  scale: 1.1;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 6px #101010;
+  position: relative;
+  z-index: 1;
 }
 
 /* projects */
@@ -884,8 +880,8 @@ form button {
     align-items: center;
   }
 
-  .form {
-    width: 100%;
+  #form {
+    width: 60%;
   }
 
   .form-header {
@@ -909,6 +905,10 @@ form button {
 @media 
   (max-width: 480px) and (orientation: portrait), 
   (max-height: 480px) and (orientation: landscape) {
+  #background-noise {
+    display: none;
+  }
+  
   .nav a {
     display: none;
   }
@@ -950,9 +950,13 @@ form button {
     background-color: unset;
   }
 
-  .carousel-track img:hover {
-    scale: 1;
+  .carousel-track img.zoomed {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
     box-shadow: none;
+    z-index: 0;
   }
 
   /* projects */

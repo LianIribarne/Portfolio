@@ -112,7 +112,7 @@ $(function () {
       this.el.innerHTML = `<span class="wrap">${this.txt}</span>`;
 
       if (this.txt !== this.text) {
-        let delta = 200 - Math.random() * 100;
+        let delta = 80;
         setTimeout(() => this.tick(), delta);
       }
     }
@@ -188,10 +188,34 @@ document.addEventListener('DOMContentLoaded', () => {
 // FORM
 // =========================================
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.startsWith(name + "=")) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 let csrfToken = null;
 
-function requestCSRFToken() {
-  if (csrfToken) return Promise.resolve(csrfToken);
+function requestCSRFTokenWithFeedback() {
+  const loadingEl = document.getElementById("form-loading");
+  const buttonEl = document.getElementById("btn-submit");
+
+  buttonEl.style.display = "none";
+  if (currentLang === 'en') {
+    loadingEl.innerText = "ACTIVANDO API";
+  } else {
+    loadingEl.innerText = "ACTIVATING API";
+  }
+  loadingEl.style.display = "block";
 
   return fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
     method: "GET",
@@ -200,8 +224,27 @@ function requestCSRFToken() {
   .then(res => res.json())
   .then(data => {
     csrfToken = data.csrfToken;
+    if (currentLang === 'en') {
+      loadingEl.innerText = "SENDING MESSAGE";
+    } else {
+      loadingEl.innerText = "ENVIANDO MENSAJE";
+    }
     return csrfToken;
   });
+}
+
+function showMessage(type, extraInfo = "") {
+  const el = type === "success"
+    ? document.getElementById("form-overlay-success")
+    : document.getElementById("form-overlay-error");
+  
+  const translation = translations[currentLang][type];
+  el.innerHTML = extraInfo ? `${translation}:<br><br>${extraInfo}` : translation;
+
+  el.classList.add("show");
+  setTimeout(() => {
+    el.classList.remove("show");
+  }, 4000);
 }
 
 document.getElementById("form").addEventListener("submit", function (e) {
@@ -215,33 +258,23 @@ document.getElementById("form").addEventListener("submit", function (e) {
 
   const loadingEl = document.getElementById("form-loading");
   const buttonEl = document.getElementById("btn-submit");
-  buttonEl.style.display = "none";
-  loadingEl.style.display = "block";
 
-  function showMessage(type, extraInfo = "") {
-    const el = type === "success"
-      ? document.getElementById("form-overlay-success")
-      : document.getElementById("form-overlay-error");
-    
-    const translation = translations[currentLang][type];
-    el.innerHTML = extraInfo ? `${translation}:<br> <br> ${extraInfo}` : translation;
-    
-    el.classList.add("show");
-    
-    setTimeout(() => {
-      el.classList.remove("show");
-    }, 4000);
-  }
-
-  requestCSRFToken().then(token => {
-    fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": token
-      },
-      body: JSON.stringify({ name, email, subject, message })
+  requestCSRFTokenWithFeedback()
+    .then(() => {
+      return fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRFToken": csrfToken
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message
+        })
+      });
     })
     .then(response => {
       if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
@@ -258,5 +291,4 @@ document.getElementById("form").addEventListener("submit", function (e) {
       loadingEl.style.display = "none";
       buttonEl.style.display = "block";
     });
-  });
 });

@@ -23,7 +23,7 @@ const translations = {
     placeholder_email: "Email",
     placeholder_subject: "Subject",
     placeholder_message: "Message",
-    form_load: "LOADING",
+    // form_load: "LOADING",
     success: "Message sent successfully!",
     error: "An error occurred",
   },
@@ -51,7 +51,7 @@ const translations = {
     placeholder_email: "Correo Electrónico",
     placeholder_subject: "Asunto",
     placeholder_message: "Mensaje",
-    form_load: "CARGANDO",
+    // form_load: "CARGANDO",
     success: "¡Mensaje enviado correctamente!",
     error: "Ocurrió un error",
   }
