@@ -171,12 +171,36 @@
                 <!-- Title project -->
                 <h3 class="project-title" data-key="p1_title"></h3>
                 <!-- Desc -->
-                <p class="project-desc" data-key="p1_desc"></p>
+                <details>
+                  <summary data-key="desc_detail"></summary>
+                  <p class="project-desc" data-key="p1_desc" data-html="true"></p>
+                </details>
                 <!-- Technologies -->
                 <div class="tech">
-                    <a href="https://en.wikipedia.org/wiki/HTML" target="_blank"><img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" /></a>
-                    <a href="https://en.wikipedia.org/wiki/CSS" target="_blank"><img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" /></a>
-                    <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"><img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" /></a>
+                    <div class="tech-item">
+                        <a href="https://en.wikipedia.org/wiki/HTML" target="_blank">
+                            <img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" />
+                        </a>
+                        <h3>HTML</h3>
+                    </div>
+                    <div class="tech-item">
+                        <a href="https://en.wikipedia.org/wiki/CSS" target="_blank">
+                            <img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" />
+                        </a>
+                        <h3>CSS</h3>
+                    </div>
+                    <div class="tech-item">
+                        <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">
+                            <img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" />
+                        </a>
+                        <h3>JavaScript</h3>
+                    </div>
+                    <div class="tech-item">
+                        <a href="https://en.wikipedia.org/wiki/Django_(web_framework)" target="_blank">
+                            <img src="images/techs/dj-icon.png" id="django" title="Django" alt="Django" loading="lazy" />
+                        </a>
+                        <h3>Django</h3>
+                    </div>
                 </div>
                 <!-- Buttons -->
                 <div class="project-buttons">

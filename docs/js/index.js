@@ -184,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
   changeLanguage(currentLang);
 });
 
+
 // =========================================
 // FORM
 // =========================================
