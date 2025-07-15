@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
     font-family: 'Monoton';
     src: url('../fonts/Monoton-Regular.woff2') format('woff2');
@@ -80,18 +81,14 @@ html { background: #101010; }
 }
 
 /* scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
+::-webkit-scrollbar { width: 4px }
 
 ::-webkit-scrollbar-thumb {
   background: white;
   border-radius: 20px;
 }
 
-body.scrolling::-webkit-scrollbar-thumb {
-  background: red;
-}
+body.scrolling::-webkit-scrollbar-thumb { background: red }
 
 /* Loading */
 #loader-breaker {
@@ -100,7 +97,7 @@ body.scrolling::-webkit-scrollbar-thumb {
   background-color: #fff;
   position: fixed;
   z-index: 1000;
-  animation: breakerStart 2s linear forwards;
+  animation: breakerStart 3s linear forwards;
 }
 
 @keyframes breakerStart {
