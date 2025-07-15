@@ -5,7 +5,9 @@ from django.core.mail import send_mail, BadHeaderError
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.conf import settings
-import json, re
+import json, re, logging
+
+logger = logging.getLogger('contact')
 
 @ensure_csrf_cookie
 def csrf_token_view(request):
@@ -53,6 +55,7 @@ def contact_view(request):
     except BadHeaderError:
         return JsonResponse({'error': 'Invalid header found.'}, status=400)
     except Exception as e:
+        logger.error(f"[Email error] {str(e)} from IP {request.META.get('REMOTE_ADDR')}")
         return JsonResponse({'error': f'Error sending email: {str(e)}'}, status=500)
 
     return JsonResponse({'state': 'Sent'}, status=200)
