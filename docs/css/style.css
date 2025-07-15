@@ -97,7 +97,7 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
   background-color: #fff;
   position: fixed;
   z-index: 1000;
-  animation: breakerStart 3s linear forwards;
+  animation: breakerStart 2s linear forwards;
 }
 
 @keyframes breakerStart {
@@ -289,7 +289,7 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
   left: 30px;
   background: transparent;
   overflow: hidden;
-  display: none;
+  opacity: 0;
   z-index: 3;
 }
 
@@ -322,7 +322,7 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 
 /* Home */
 #home {
-  display: none;
+  opacity: 0;
   align-items: center;
   justify-content: center;
   text-align: center;

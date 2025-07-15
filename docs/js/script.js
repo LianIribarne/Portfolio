@@ -32,22 +32,16 @@ $(window).on('load', function () {
   }
 
   gsap.to($loaderBreaker, {
-    opacity: 0,
-    duration: 2,
-    delay: 1.5,
+    duration: 2.5,
     onComplete: () => {
       $loaderBreaker.css('display', 'none');
+      
+      $home.css('display', 'flex');
+      $navigation.css('display', 'flex');
+
+      gsap.fromTo($home, { opacity: 0 }, { opacity: 1, duration: 0.2 });
+      gsap.fromTo($navigation, { opacity: 0 }, { opacity: 1, duration: 1 });
     }
-  });
-
-  gsap.to($home, {
-    display: "flex",
-    delay: 1
-  });
-
-  gsap.to($navigation, {
-    display: "block",
-    delay: 1
   });
 
   // =========================================
