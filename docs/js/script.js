@@ -375,7 +375,9 @@ document.getElementById("form").addEventListener("submit", function (e) {
         });
       })
       .then(response => {
-        if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+        if (!response.ok) return response.json().then(data => {
+          throw new Error(data.error || "Unknown error");
+        });
         return response.json();
       })
       .then(() => {
@@ -383,7 +385,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
         showMessage("success");
       })
       .catch(error => {
-        showMessage("error", error.message || "¿?");
+        showMessage("error", error.message);
       })
       .finally(() => {
         loadingEl.style.display = "none";
