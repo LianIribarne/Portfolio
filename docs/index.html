@@ -5,68 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lian Iribarne - Portfolio</title>
     <meta name="description" content="Lian Iribarne’s professional portfolio, focused on data science, analysis, and visualization projects.">
-    <link rel="icon" type="image/png" href="images/icons/icon-red.png" />
-    <link rel="stylesheet" href="css/index.css" />
+    <link rel="icon" type="image/png" href="images/icons/icon-red.webp" />
+    <link rel="stylesheet" href="css/style.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
-    <div id="background-noise"></div>
-
     <!-- Loading -->
     <div id="loader-breaker"></div>
 
     <!-- Breaker -->
     <div id="breaker"></div>
 
-    <!-- Home button -->
-    <div id="home-btn" class="hidden">
-        <a href="#home" id="home-link"><img src="images/icons/home.png" alt="Home" loading="lazy" /></a>
+    <!-- Menu -->
+    <div id="navigation-content">
+        <!-- Options -->
+        <div class="navigation-links">
+            <a href="#home" class="home-link glitch active" data-key="home"></a>
+            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
+            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
+            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
+        </div>
+        <!-- Close -->
+        <div class="navigation-close">X</div>
+    </div>
+
+    <!-- Button menu -->
+    <div id="navigation-bar">
+        <div class="menubar">
+            <img src="images/icons/menu.webp" alt="Menu">
+        </div>
     </div>
 
     <!-- Home -->
     <header id="home">
         <div class="home-box">
-            <div class="header-content">
-                <h1 class="firstline" data-key="portfolio"></h1>
-                <h3 class="secondline">
-                    <span class="txt-rotate" data-key="welcome"></span>
-                    <span class="slash">|</span>
-                </h3>
-            </div>
-            <!-- Navigation buttons -->
-            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
-            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
-            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
+            <h1 class="firstline" data-key="portfolio"></h1>
+            <h3 class="secondline">
+                <span class="txt-rotate" data-key="welcome" data-html="true"></span>
+                <span class="slash">|</span>
+            </h3>
             <!-- Social media links -->
             <div class="social-media-links">
-                <a href="#" target="_blank"><img src="images/icons/notion.png" title="Notion" class="social-media" alt="Notion" /></a>
-                <a href="https://github.com/LianIribarne" target="_blank"><img src="images/icons/github.png" title="GitHub" class="social-media" alt="GitHub" /></a>
-                <a href="" download><img src="images/icons/cv.png" title="CV" class="social-media" alt="CV"></a>
-                <!-- Language button -->
-                <button id="lang-toggle" class="language-button">
-                    <img id="lang-icon" src="images/flags/spain.png" alt="Español" loading="lazy" />
-                </button>
+                <div class="icon-with-label">
+                    <!-- LinkedIn -->
+                    <a href="#" target="_blank">
+                        <img src="images/icons/linkedin.png" class="social-media" alt="LinkedIn" />
+                    </a>
+                    <span class="icon-label">LinkedIn</span>
+                </div>
+                <div class="icon-with-label">
+                    <!-- GitHub -->
+                    <a href="https://github.com/LianIribarne" target="_blank">
+                        <img src="images/icons/github.png" class="social-media" alt="GitHub" />
+                    </a>
+                    <span class="icon-label">GitHub</span>
+                </div>
+                <div class="icon-with-label">
+                    <!-- CV -->
+                    <a href="" download>
+                        <img src="images/icons/cv.png" class="social-media" alt="CV" />
+                    </a>
+                    <span class="icon-label" data-key="download_cv"></span>
+                </div>
+                <div class="icon-with-label">
+                    <!-- Language -->
+                    <button id="lang-toggle" class="language-button">
+                        <img id="lang-icon" src="images/flags/arg.webp" class="social-media" alt="Español" loading="lazy" />
+                    </button>
+                    <span class="icon-label" data-key="language"></span>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- About me -->
     <section id="aboutme">
-        <div class="nav">
-            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
-            <h1 class="header" data-key="aboutme"></h1>
-            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
-        </div>
+        <h1 class="header" data-key="aboutme"></h1>
         <div id="about-me">
             <!-- Info -->
             <div class="about-info">
                 <p class="about-text" data-key="about_intro" data-html="true"></p>
-                <h2 class="about-header" data-key="about_goals"></h2>
-                <p class="about-text" data-key="about_detail"></p>
             </div>
             <!-- Image Lian -->
-            <div class="about-img">
-                <img src="images/progress.jpg" alt="Lian" loading="lazy" />
+            <div class="card-wrapper">
+                <div class="card about-img">
+                    <img src="images/lian.webp" alt="LianIribarne" />
+                </div>
             </div>
         </div>
         <!-- Skills -->
@@ -148,9 +172,21 @@
             <h2 class="certificate-header" data-key="certs"></h2>
             <div class="carousel-container">
                 <div class="carousel-track">
-                    <img src="images/certificates/Python_Developer.png" alt="certificate-python-developer" loading="lazy" />
-                    <img src="images/certificates/SQL_2.png" alt="certificate-sql-2" loading="lazy" />
-                    <img src="images/certificates/Coding_For_Data.jpg" alt="certificate-coding-for-data" loading="lazy" />
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <img src="images/certificates/Python_Developer.png" alt="certificate-python-developer" loading="lazy" />
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <img src="images/certificates/SQL_2.png" alt="certificate-sql-2" loading="lazy" />
+                        </div>
+                    </div>
+                    <div class="card-wrapper">
+                        <div class="card">
+                            <img src="images/certificates/Coding_For_Data.jpg" alt="certificate-coding-for-data" loading="lazy" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,66 +194,69 @@
 
     <!-- Projects -->
     <section id="projects">
-        <div class="nav">
-            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
-            <h1 class="header" data-key="projects"></h1>
-            <a href="#contact" class="contact-link glitch" data-key="contact"></a>
-        </div>
+        <h1 class="header" data-key="projects"></h1>
         <div class="project-content">
-            <!-- Project 1 -->
+            <!-- Project -1 -->
             <div class="project-card">
                 <!-- Image project -->
-                <img src="images/portfolio.png" alt="Portfolio" class="project-img">
+                <div class="card-wrapper">
+                    <div class="project-img card">
+                        <img src="images/projects/portfolio.webp" alt="project1" />
+                    </div>
+                </div>
                 <!-- Title project -->
                 <h3 class="project-title" data-key="p1_title"></h3>
-                <!-- Desc -->
-                <details>
-                  <summary data-key="desc_detail"></summary>
-                  <p class="project-desc" data-key="p1_desc" data-html="true"></p>
-                </details>
                 <!-- Technologies -->
                 <div class="tech">
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/HTML" target="_blank">
-                            <img src="images/techs/html-icon.png" title="HTML" alt="HTML" loading="lazy" />
+                            <img src="images/techs/html-icon.png" alt="HTML" loading="lazy" />
                         </a>
                         <h3>HTML</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/CSS" target="_blank">
-                            <img src="images/techs/css-icon.png" title="CSS" alt="CSS" loading="lazy" />
+                            <img src="images/techs/css-icon.png" alt="CSS" loading="lazy" />
                         </a>
                         <h3>CSS</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">
-                            <img src="images/techs/js-icon.png" title="JavaScript" alt="JavaScript" loading="lazy" />
+                            <img src="images/techs/js-icon.png" alt="JavaScript" loading="lazy" />
                         </a>
                         <h3>JavaScript</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/Django_(web_framework)" target="_blank">
-                            <img src="images/techs/dj-icon.png" id="django" title="Django" alt="Django" loading="lazy" />
+                            <img src="images/techs/dj-icon.png" alt="Django" loading="lazy" />
                         </a>
                         <h3>Django</h3>
                     </div>
                 </div>
+                <!-- Description -->
+                <div class="project-desc-overlay">
+                    <p class="project-desc" data-key="p1_desc" data-html="true"></p>
+                    <!-- Close -->
+                    <button class="close-desc-btn">X</button>
+                </div>
                 <!-- Buttons -->
                 <div class="project-buttons">
-                    <a href="https://github.com/LianIribarne/portfolio" target="_blank"><button class="btn"><img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" /></button></a>
+                    <!-- Button description -->
+                    <button class="desc-btn" data-key="desc_detail"></button>
+                    <!-- Button GitHub -->
+                    <a href="https://github.com/LianIribarne/portfolio" target="_blank">
+                        <button class="btn">
+                            <img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" />
+                        </button>
+                    </a>
                 </div>
             </div>
-
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
-        <div class="nav">
-            <a href="#aboutme" class="about-link glitch" data-key="aboutme"></a>
-            <h1 class="header" data-key="contact"></h1>
-            <a href="#projects" class="projects-link glitch" data-key="projects"></a>
-        </div>
+        <h1 class="header" data-key="contact"></h1>
         <div class="contact-content">
             <!-- Form -->
             <form id="form">
@@ -226,16 +265,16 @@
                 </div>
                 <div class="input-line">
                     <!-- Input name -->
-                    <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" required />
+                    <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" />
                     <!-- Input email -->
-                    <input type="email" class="input-email" name="email" placeholder="Email" data-key="placeholder_email" required />
+                    <input type="email" class="input-email" name="email" placeholder="Email" data-key="placeholder_email" />
                 </div>
                 <!-- Input subject -->
-                <input type="text" class="input-subject" name="subject" placeholder="Subject" data-key="placeholder_subject" required />
+                <input type="text" class="input-subject" name="subject" placeholder="Subject" data-key="placeholder_subject" />
                 <!-- Input message -->
-                <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message" required></textarea>
+                <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message"></textarea>
                 <!-- Submit -->
-                <button id="btn-submit" class="btn" type="submit"><img src="images/icons/send.png" title="Send" class="btn-icon" alt="Send" loading="lazy" /></button>
+                <button id="btn-submit" class="btn" type="submit"><img src="images/icons/send.png" id="send-btn" class="btn-icon" alt="Send" loading="lazy" /></button>
                 <!-- Load -->
                 <div id="form-loading" class="form-load slash"></div>
             </form>
@@ -250,6 +289,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/translations.js"></script>
-    <script src="js/index.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

@@ -18,17 +18,16 @@ window.addEventListener("scroll", () => {
 // =========================================
 
 $(window).on('load', function () {
-  const isMobile = (
-    (window.innerWidth < 480) && window.matchMedia("(orientation: portrait)").matches || 
-    (window.innerHeight < 480 && window.matchMedia("(orientation: landscape)").matches)
-  );
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
   const $loaderBreaker = $('#loader-breaker');
   const $home = $('#home');
-
+  const $navigation = $('#navigation-bar');
+  
   if (isMobile) {
     $loaderBreaker.remove();
-    $home.css('opacity', 1);
+    $home.css('display', 'flex');
+    $navigation.css('display', 'flex');
     return;
   }
 
@@ -42,9 +41,80 @@ $(window).on('load', function () {
   });
 
   gsap.to($home, {
-    opacity: 1,
-    duration: 0.6,
-    delay: 1.4
+    display: "flex",
+    delay: 1
+  });
+
+  gsap.to($navigation, {
+    display: "block",
+    delay: 1
+  });
+
+  // =========================================
+  // SHINE
+  // =========================================
+  
+  const cards = document.querySelectorAll(".card");
+  
+  cards.forEach((card) => {
+    const img = card.querySelector("img");
+  
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+    
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+    
+      const rotateX = -(y - centerY) / 15;
+      const rotateY = (x - centerX) / 15;
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    
+      const yPercent = y / rect.height;
+      const brightness = 1.1 - yPercent * 0.4;
+      img.style.filter = `brightness(${brightness})`;
+    });
+  
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "rotateX(0) rotateY(0)";
+      img.style.filter = "brightness(1)";
+    });
+  });
+});
+
+// =========================================
+// MENU OPEN/CLOSE
+// =========================================
+
+$(function () {
+  const $breaker = $('#breaker');
+
+  $('.menubar').on('click', function () {
+    $breaker.css('display', 'block');
+
+    setTimeout(() => {
+      gsap.set('#navigation-content', { clearProps: "all" });
+      gsap.set('#navigation-content', { y: 0, display: "flex" });
+    }, 500);
+    
+    setTimeout(() => {
+       $breaker.css('display', 'none');
+    }, 1000)
+  });
+
+
+
+  $('.navigation-close').on('click', function () {
+    $breaker.css('display', 'block');
+
+    setTimeout(() => {
+      gsap.set('#navigation-content', { y: "-100%", display: "none" });
+    }, 500);
+    
+    setTimeout(() => {
+       $breaker.css('display', 'none');
+    }, 1000)
   });
 });
 
@@ -55,14 +125,23 @@ $(window).on('load', function () {
 $(function () {
   const sections = ['#home', '#aboutme', '#projects', '#contact'];
   const $breaker = $('#breaker');
-  const $homeBtn = $('#home-btn');
 
   function navigateTo(targetId) {
     const displayType = targetId === '#home' ? 'flex' : 'block';
 
+    gsap.to('#navigation-content', {
+      delay: 0.5,
+      duration: 0,
+      y: "-100%",
+      display: "none"
+    });
+
+    $('.navigation-links a').removeClass('active');
+    $(`.navigation-links a[href="${targetId}"]`).addClass('active');
+
     sections.forEach(id => {
       gsap.to(id, {
-        delay: 0.8,
+        delay: 0.4,
         duration: 0,
         css: { display: 'none' }
       });
@@ -70,28 +149,32 @@ $(function () {
 
     gsap.set($breaker, { display: 'block' });
     gsap.to($breaker, {
-      delay: 2,
+      delay: 1,
       duration: 0,
       css: { display: 'none' }
     });
 
     gsap.to(targetId, {
-      delay: 0.8,
+      delay: 0.4,
       duration: 0,
       css: { display: displayType }
-    });
+    })
 
-    if (targetId === '#home') {
-      setTimeout(() => $homeBtn.addClass('hidden'), 800);
-    } else {
-      setTimeout(() => $homeBtn.removeClass('hidden'), 800);
-    }
+    setTimeout(() => {
+      const section = document.querySelector(targetId);
+      if (section) {
+        section.scrollTop = 0;
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }, 450);
+
+    gsap.to('#navigation-content', 0, { display: "flex", delay: 2 });
   }
 
   $('.about-link').on('click', () => navigateTo('#aboutme'));
   $('.projects-link').on('click', () => navigateTo('#projects'));
   $('.contact-link').on('click', () => navigateTo('#contact'));
-  $('#home-link').on('click', () => navigateTo('#home'));
+  $('.home-link').on('click', () => navigateTo('#home'));
 });
 
 // =========================================
@@ -112,8 +195,7 @@ $(function () {
       this.el.innerHTML = `<span class="wrap">${this.txt}</span>`;
 
       if (this.txt !== this.text) {
-        let delta = 80;
-        setTimeout(() => this.tick(), delta);
+        setTimeout(() => this.tick(), 50);
       }
     }
   }
@@ -168,7 +250,7 @@ function changeLanguage(lang) {
 
   const langIcon = document.getElementById('lang-icon');
   const isSpanish = lang === 'es';
-  langIcon.src = isSpanish ? "images/flags/united-states.png" : "images/flags/spain.png";
+  langIcon.src = isSpanish ? "images/flags/usa.webp" : "images/flags/arg.webp";
   langIcon.alt = isSpanish ? 'English' : 'Español';
 }
 
@@ -184,6 +266,19 @@ document.addEventListener('DOMContentLoaded', () => {
   changeLanguage(currentLang);
 });
 
+
+document.querySelectorAll('.project-card').forEach(card => {
+  const showBtn = card.querySelector('.desc-btn');
+  const closeBtn = card.querySelector('.close-desc-btn');
+
+  showBtn.addEventListener('click', () => {
+    card.classList.add('show-desc');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    card.classList.remove('show-desc');
+  });
+});
 
 // =========================================
 // FORM
@@ -211,11 +306,7 @@ function requestCSRFTokenWithFeedback() {
   const buttonEl = document.getElementById("btn-submit");
 
   buttonEl.style.display = "none";
-  if (currentLang === 'en') {
-    loadingEl.innerText = "ACTIVATING API";
-  } else {
-    loadingEl.innerText = "ACTIVANDO API";
-  }
+  loadingEl.innerText = currentLang === 'en' ? "ACTIVATING API": "ACTIVANDO API";
   loadingEl.style.display = "block";
 
   return fetch("https://portfolio-backend-xrap.onrender.com/api/csrf/", {
@@ -225,11 +316,7 @@ function requestCSRFTokenWithFeedback() {
   .then(res => res.json())
   .then(data => {
     csrfToken = data.csrfToken;
-    if (currentLang === 'en') {
-      loadingEl.innerText = "SENDING MESSAGE";
-    } else {
-      loadingEl.innerText = "ENVIANDO MENSAJE";
-    }
+    loadingEl.innerText = currentLang === 'en' ? "SENDING MESSAGE": "ENVIANDO MENSAJE";
     return csrfToken;
   });
 }
@@ -252,44 +339,55 @@ document.getElementById("form").addEventListener("submit", function (e) {
   e.preventDefault();
   const form = this;
 
-  const name = form.elements["name"].value;
-  const subject = form.elements["subject"].value;
-  const email = form.elements["email"].value;
-  const message = form.elements["message"].value;
+  let valid = true;
 
-  const loadingEl = document.getElementById("form-loading");
-  const buttonEl = document.getElementById("btn-submit");
+  this.querySelectorAll("input, textarea").forEach((field) => {
+    field.classList.remove("invalid");
 
-  requestCSRFTokenWithFeedback()
-    .then(() => {
-      return fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRFToken": csrfToken
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          subject: subject,
-          message: message
-        })
+    if (!field.value.trim()) {
+      field.classList.add("invalid");
+      valid = false;
+      setTimeout(() => {
+        field.classList.remove("invalid")
+      }, 700);
+    }
+  });
+
+  if (valid) {
+    const loadingEl = document.getElementById("form-loading");
+    const buttonEl = document.getElementById("btn-submit");
+  
+    requestCSRFTokenWithFeedback()
+      .then(() => {
+        return fetch("https://portfolio-backend-xrap.onrender.com/api/form/", {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": csrfToken
+          },
+          body: JSON.stringify({
+            name: form.elements["name"].value,
+            email: form.elements["email"].value,
+            subject: form.elements["subject"].value,
+            message: form.elements["message"].value
+          })
+        });
+      })
+      .then(response => {
+        if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
+        return response.json();
+      })
+      .then(() => {
+        form.reset();
+        showMessage("success");
+      })
+      .catch(error => {
+        showMessage("error", error.message || "¿?");
+      })
+      .finally(() => {
+        loadingEl.style.display = "none";
+        buttonEl.style.display = "block";
       });
-    })
-    .then(response => {
-      if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
-      return response.json();
-    })
-    .then(() => {
-      form.reset();
-      showMessage("success");
-    })
-    .catch(error => {
-      showMessage("error", error.message || "¿?");
-    })
-    .finally(() => {
-      loadingEl.style.display = "none";
-      buttonEl.style.display = "block";
-    });
+  }
 });
