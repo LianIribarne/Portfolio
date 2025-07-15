@@ -265,16 +265,18 @@
                 </div>
                 <div class="input-line">
                     <!-- Input name -->
-                    <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" />
+                    <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" maxlength="100" />
                     <!-- Input email -->
-                    <input type="email" class="input-email" name="email" placeholder="Email" data-key="placeholder_email" />
+                    <input type="email" class="input-email" name="email" placeholder="Email" data-key="placeholder_email" maxlength="100" />
                 </div>
                 <!-- Input subject -->
-                <input type="text" class="input-subject" name="subject" placeholder="Subject" data-key="placeholder_subject" />
+                <input type="text" class="input-subject" name="subject" placeholder="Subject" data-key="placeholder_subject" maxlength="100" />
                 <!-- Input message -->
-                <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message"></textarea>
+                <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message" maxlength="1000"></textarea>
                 <!-- Submit -->
-                <button id="btn-submit" class="btn" type="submit"><img src="images/icons/send.png" id="send-btn" class="btn-icon" alt="Send" loading="lazy" /></button>
+                <button id="btn-submit" class="btn" type="submit">
+                    <img src="images/icons/send.png" id="send-btn" class="btn-icon" alt="Send" loading="lazy" />
+                </button>
                 <!-- Load -->
                 <div id="form-loading" class="form-load slash"></div>
             </form>
