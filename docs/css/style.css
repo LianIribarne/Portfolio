@@ -842,6 +842,10 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
   height: 100px;
 }
 
+#website {
+  display: none;
+}
+
 form button {
   transition: all 0.4s ease;
   align-self: center;

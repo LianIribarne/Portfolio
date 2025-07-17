@@ -333,6 +333,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
   let valid = true;
 
   this.querySelectorAll("input, textarea").forEach((field) => {
+    if (field.name === "website") return;
     field.classList.remove("invalid");
 
     if (!field.value.trim()) {

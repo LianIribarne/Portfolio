@@ -22,7 +22,11 @@ def contact_view(request):
         data = json.loads(request.body)
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid data'}, status=400)
-        
+    
+    honeypot = data.get('website', '')
+    if honeypot:
+        return JsonResponse({'error': 'Bot detected'}, status=400)
+
     name = data.get('name', '').strip()
     email = data.get('email', '').strip()
     subject = data.get('subject', '').strip()
