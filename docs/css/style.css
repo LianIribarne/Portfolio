@@ -23,14 +23,6 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Poppins';
-    src: url('../fonts/Poppins-Medium.woff2') format('woff2');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -94,32 +86,19 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 #loader-breaker {
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: rgb(166,0,0);
+  color: #fff;
+  box-shadow: inset 0 0 160px red;
+  letter-spacing: 2px;
+  font-family: 'Orbitron', 'sans-serif';
+  font-weight: bold;
+  font-size: 4rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   position: fixed;
   z-index: 1000;
-  animation: breakerStart 2s linear forwards;
-}
-
-@keyframes breakerStart {
-  0% {
-    transform: scaleY(0);
-  }
-  35% {
-    transform: scaleY(0.03);
-    background-color: #b4b4b4;
-  }
-  40% {
-    transform: scaleY(1);
-    background-color: #b4b4b4;
-  }
-  50%, 53% {
-    transform: scaleY(1);
-    background-color: rgb(166, 0, 0);
-  }
-  100% {
-    transform: scaleY(0);
-    background-color: #101010;
-  }
 }
 
 /* Breaker */
@@ -462,11 +441,11 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 }
 
 .about-text {
-  font-size: 20px;
-  font-weight: 200;
-  letter-spacing: 1px;
-  font-family: 'Poppins', sans-serif;
-  color: #ccc;
+  font-size: 1.1rem;
+  word-spacing: 5px;
+  letter-spacing: 2px;
+  font-family: 'Orbitron', sans-serif;
+  color: #fff;
 }
 
 .about-img {
@@ -540,7 +519,6 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 
 /* academic */
 #academic {
-  padding-top: 50px;
   background-color: #101010;
 }
 
@@ -578,16 +556,19 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 
 .academic-box-description h2 {
   margin: 5px;
-  font-size: 25px;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+  font-size: 1.6rem;
   font-weight: 700;
 }
 
 .academic-box-description p {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   padding: 10px;
   font-size: 20px;
-  font-weight: 200;
-  color: #ccc;
+  letter-spacing: 3px;
+  word-spacing: 5px;
+  color: #fff;
 }
 
 /* certificates */
@@ -780,18 +761,18 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
   justify-content: center;
 }
 
-.btn {
+.project-btn {
   background: none;
   border: none;
   cursor: pointer;
   transition: all 1s ease;
 }
 
-.btn-icon {
+.project-btn-icon {
   height: 40px;
 }
 
-.btn:hover {
+.project-btn:hover {
   transition: all 1s ease;
   rotate: 360deg;
 }
@@ -837,7 +818,9 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 .input-email {
   padding: 10px 20px;
   font-size: 18px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 2px;
+  font-weight: 700;
   color: white;
   border-radius: 12px;
   border: none;
@@ -862,6 +845,22 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 form button {
   transition: all 0.4s ease;
   align-self: center;
+}
+
+.contact-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-btn-icon {
+  height: 40px;
+}
+
+.contact-btn:hover {
+  transition: all 0.3s ease;
+  scale: 1.2;
 }
 
 #send-btn {
@@ -934,7 +933,7 @@ form button {
   }
   
   .header {
-    font-size: 2.6rem;
+    font-size: 3rem;
     word-spacing: 500px;
     padding: 20px 0;
     filter: none;
@@ -954,26 +953,21 @@ form button {
   }
 
   .home-box {
-    padding: 0;
+    /* padding: 0; */
     margin: 0 10px;
     border-radius: 20px;
   }
 
   .firstline {
-    font-size: 2.5rem;
-    margin-top: 20px;
+    font-size: 3rem;
     filter: none;
     color: red;
   }
 
   .secondline {
-    font-size: 1.2rem;
-    margin: 20px 10px;
+    font-size: 1.6rem;
+    /* margin: 20px 10px; */
     white-space: normal;
-  }
-
-  .home-box a {
-    font-size: 1.2rem;
   }
 
   .social-media-links {
@@ -982,11 +976,7 @@ form button {
   }
 
   .social-media {
-    height: 35px;
-  }
-
-  #lang-icon {
-    transform: translateY(-10px);
+    height: 40px;
   }
 
   /* aboutme */
@@ -1008,8 +998,8 @@ form button {
   }
 
   .about-img {
-    width: 70%;
-    margin-right: 5%;
+    width: 300px;
+    margin: 0;
     margin-top: 20px;
   }
 
@@ -1082,16 +1072,8 @@ form button {
 @media 
   (max-width: 480px) and (orientation: portrait), 
   (max-height: 480px) and (orientation: landscape) {
-
-  .navigation-close:hover {
-    scale: 1;
-  }
-
-  .menubar:hover {
-    scale: 1;
-    rotate: 0deg;
-    transition: all 0.3s ease;
-  }
+  
+  
   
   /* home */
   #home {

@@ -23,16 +23,9 @@ $(window).on('load', function () {
   const $loaderBreaker = $('#loader-breaker');
   const $home = $('#home');
   const $navigation = $('#navigation-bar');
-  
-  if (isMobile) {
-    $loaderBreaker.remove();
-    $home.css('display', 'flex');
-    $navigation.css('display', 'flex');
-    return;
-  }
 
   gsap.to($loaderBreaker, {
-    duration: 2.5,
+    duration: 1.5,
     onComplete: () => {
       $loaderBreaker.css('display', 'none');
       
@@ -43,6 +36,10 @@ $(window).on('load', function () {
       gsap.fromTo($navigation, { opacity: 0 }, { opacity: 1, duration: 1 });
     }
   });
+
+  if (isMobile) {
+    return;
+  }
 
   // =========================================
   // SHINE

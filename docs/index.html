@@ -10,13 +10,12 @@
     <link rel="preload" href="fonts/Monoton-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="fonts/Orbitron-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <link rel="preload" href="fonts/Orbitron-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preload" href="fonts/Poppins-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
     <!-- Loading -->
-    <div id="loader-breaker"></div>
+    <div id="loader-breaker"><span class="slash">LOADING</span></div>
 
     <!-- Breaker -->
     <div id="breaker"></div>
@@ -37,7 +36,7 @@
     <!-- Button menu -->
     <div id="navigation-bar">
         <div class="menubar">
-            <img src="images/icons/menu.webp" alt="Menu">
+            <img src="images/icons/menu.webp" alt="Menu" loading="lazy">
         </div>
     </div>
 
@@ -54,21 +53,21 @@
                 <div class="icon-with-label">
                     <!-- LinkedIn -->
                     <a href="#" target="_blank">
-                        <img src="images/icons/linkedin.png" class="social-media" alt="LinkedIn" />
+                        <img src="images/icons/linkedin.webp" class="social-media" alt="LinkedIn" loading="lazy" />
                     </a>
                     <span class="icon-label">LinkedIn</span>
                 </div>
                 <div class="icon-with-label">
                     <!-- GitHub -->
                     <a href="https://github.com/LianIribarne" target="_blank">
-                        <img src="images/icons/github.png" class="social-media" alt="GitHub" />
+                        <img src="images/icons/github.webp" class="social-media" alt="GitHub" loading="lazy" />
                     </a>
                     <span class="icon-label">GitHub</span>
                 </div>
                 <div class="icon-with-label">
                     <!-- CV -->
                     <a href="" download>
-                        <img src="images/icons/cv.png" class="social-media" alt="CV" />
+                        <img src="images/icons/cv.webp" class="social-media" alt="CV" loading="lazy" />
                     </a>
                     <span class="icon-label" data-key="download_cv"></span>
                 </div>
@@ -94,7 +93,7 @@
             <!-- Image Lian -->
             <div class="card-wrapper">
                 <div class="card about-img">
-                    <img src="images/lian.webp" alt="LianIribarne" />
+                    <img src="images/lian.webp" alt="LianIribarne" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -105,43 +104,43 @@
                 <div class="skills-grid">
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/Python_(programming_language)" target="_blank">
-                            <img src="images/techs/python.png" alt="Python" class="item" loading="lazy" />
+                            <img src="images/techs/python.webp" alt="Python" class="item" loading="lazy" />
                         </a>
                         <h3>Python</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/Pandas_(software)" target="_blank">
-                            <img src="images/techs/pandas.png" alt="Pandas" class="item" loading="lazy" />
+                            <img src="images/techs/pandas.webp" alt="Pandas" class="item" loading="lazy" />
                         </a>
                         <h3>Pandas</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/NumPy" target="_blank">
-                            <img src="images/techs/numpy.png" alt="NumPy" class="item" loading="lazy" />
+                            <img src="images/techs/numpy.webp" alt="NumPy" class="item" loading="lazy" />
                         </a>
                         <h3>NumPy</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/SQL" target="_blank">
-                            <img src="images/techs/sql.png" alt="SQL" class="item" loading="lazy" />
+                            <img src="images/techs/sql.webp" alt="SQL" class="item" loading="lazy" />
                         </a>
                         <h3>SQL</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/Anaconda_(Python_distribution)" target="_blank">
-                            <img src="images/techs/anaconda.png" alt="Anaconda" class="item" loading="lazy" />
+                            <img src="images/techs/anaconda.webp" alt="Anaconda" class="item" loading="lazy" />
                         </a>
                         <h3>Anaconda</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/Docker_(software)" target="_blank">
-                            <img src="images/techs/docker.png" alt="Docker" class="item" loading="lazy" />
+                            <img src="images/techs/docker.webp" alt="Docker" class="item" loading="lazy" />
                         </a>
                         <h3>Docker</h3>
                     </div>
                     <div class="skill-item">
                         <a href="https://en.wikipedia.org/wiki/Git" target="_blank">
-                            <img src="images/techs/git.png" alt="Git" class="item" loading="lazy" />
+                            <img src="images/techs/git.webp" alt="Git" class="item" loading="lazy" />
                         </a>
                         <h3>Git</h3>
                     </div>
@@ -154,7 +153,7 @@
             <div class="academic-content">
                 <div class="academic-box">
                     <div class="academic-box-img">
-                        <img src="images/icons/coding.png" alt="pc-coding" loading="lazy" />
+                        <img src="images/icons/coding.webp" alt="pc-coding" loading="lazy" />
                     </div>
                     <div class="academic-box-description">
                         <h2 data-key="degree_1_title"></h2>
@@ -163,7 +162,7 @@
                 </div>
                 <div class="academic-box">
                     <div class="academic-box-img">
-                        <img src="images/icons/paint.png" alt="paint" loading="lazy" />
+                        <img src="images/icons/paint.webp" alt="paint" loading="lazy" />
                     </div>
                     <div class="academic-box-description">
                         <h2 data-key="degree_2_title"></h2>
@@ -179,17 +178,17 @@
                 <div class="carousel-track">
                     <div class="card-wrapper">
                         <div class="card">
-                            <img src="images/certificates/Python_Developer.png" alt="certificate-python-developer" loading="lazy" />
+                            <img src="images/certificates/Python_Developer.webp" alt="certificate-python-developer" loading="lazy" />
                         </div>
                     </div>
                     <div class="card-wrapper">
                         <div class="card">
-                            <img src="images/certificates/SQL_2.png" alt="certificate-sql-2" loading="lazy" />
+                            <img src="images/certificates/SQL_2.webp" alt="certificate-sql-2" loading="lazy" />
                         </div>
                     </div>
                     <div class="card-wrapper">
                         <div class="card">
-                            <img src="images/certificates/Coding_For_Data.jpg" alt="certificate-coding-for-data" loading="lazy" />
+                            <img src="images/certificates/Coding_For_Data.webp" alt="certificate-coding-for-data" loading="lazy" />
                         </div>
                     </div>
                 </div>
@@ -206,7 +205,7 @@
                 <!-- Image project -->
                 <div class="card-wrapper">
                     <div class="project-img card">
-                        <img src="images/projects/portfolio.webp" alt="project1" />
+                        <img src="images/projects/portfolio.webp" alt="project1" loading="lazy" />
                     </div>
                 </div>
                 <!-- Title project -->
@@ -215,25 +214,25 @@
                 <div class="tech">
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/HTML" target="_blank">
-                            <img src="images/techs/html-icon.png" alt="HTML" loading="lazy" />
+                            <img src="images/techs/html-icon.webp" alt="HTML" loading="lazy" />
                         </a>
                         <h3>HTML</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/CSS" target="_blank">
-                            <img src="images/techs/css-icon.png" alt="CSS" loading="lazy" />
+                            <img src="images/techs/css-icon.webp" alt="CSS" loading="lazy" />
                         </a>
                         <h3>CSS</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">
-                            <img src="images/techs/js-icon.png" alt="JavaScript" loading="lazy" />
+                            <img src="images/techs/js-icon.webp" alt="JavaScript" loading="lazy" />
                         </a>
                         <h3>JavaScript</h3>
                     </div>
                     <div class="tech-item">
                         <a href="https://en.wikipedia.org/wiki/Django_(web_framework)" target="_blank">
-                            <img src="images/techs/dj-icon.png" alt="Django" loading="lazy" />
+                            <img src="images/techs/dj-icon.webp" alt="Django" loading="lazy" />
                         </a>
                         <h3>Django</h3>
                     </div>
@@ -250,8 +249,8 @@
                     <button class="desc-btn" data-key="desc_detail"></button>
                     <!-- Button GitHub -->
                     <a href="https://github.com/LianIribarne/portfolio" target="_blank">
-                        <button class="btn">
-                            <img src="images/icons/github.png" class="btn-icon" alt="GitHub" loading="lazy" />
+                        <button class="project-btn">
+                            <img src="images/icons/github.webp" class="project-btn-icon" alt="GitHub" loading="lazy" />
                         </button>
                     </a>
                 </div>
@@ -279,8 +278,8 @@
                 <!-- Input message -->
                 <textarea class="input-textarea" name="message" placeholder="Message" data-key="placeholder_message" maxlength="1000"></textarea>
                 <!-- Submit -->
-                <button id="btn-submit" class="btn" type="submit">
-                    <img src="images/icons/send.png" id="send-btn" class="btn-icon" alt="Send" loading="lazy" />
+                <button id="btn-submit" class="contact-btn" type="submit">
+                    <img src="images/icons/send.webp" id="send-btn" class="contact-btn-icon" alt="Send" loading="lazy" />
                 </button>
                 <!-- Load -->
                 <div id="form-loading" class="form-load slash"></div>
@@ -293,8 +292,8 @@
     <div id="form-overlay-error" class="form-overlay" data-key="error"></div>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="js/jquery-3.7.1.min.js" defer></script>
+    <script src="js/gsap.min.js" defer></script>
     <script src="js/translations.js" defer></script>
     <script src="js/script.js" defer></script>
 </body>
