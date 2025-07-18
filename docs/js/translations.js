@@ -1,5 +1,6 @@
 const translations = {
   en: {
+    loading: "LOADING",
     welcome: "Hi, I'm <text style=\"color: red\">Lian Iribarne</text> — Data Scientist.<br><br>I analyze, transform, and model data to uncover what others can't see.<br>Data speaks. I interpret them.",
     download_cv: "Download CV",
     language: "Language",
@@ -16,8 +17,8 @@ const translations = {
     degree_2_desc: "High school at Centro Polivalente de Arte \"Prof. Diana Cotorruelo\" <br>graduation: 10/12/2021",
     skills: "TECHNICAL SKILLS",
     certs: "CERTIFICATES",
-    p1_title: "Retro-Futuristic Web Portfolio",
     desc_detail: "Description",
+    p1_title: "Retro-Futuristic Web Portfolio",
     p1_desc: "Project divided into frontend and backend.<br><br><text style=\"color: red\">Frontend</text>: Built with pure HTML, CSS, JavaScript, jQuery, and GSAP animations.<br><br><text style=\"color: red\">Backend</text>: Developed with Django, provides a secure API for the contact form. Uses django-environ for environment variables, CSRF protection, django-cors-headers for CORS configuration, and is deployed on Render.",
     send_message: "Send Me a Message",
     placeholder_name: "Name",
@@ -25,9 +26,9 @@ const translations = {
     placeholder_subject: "Subject",
     placeholder_message: "Message",
     success: "Message sent successfully!",
-    error: "An error occurred",
   },
   es: {
+    loading: "CARGANDO",
     welcome: "Hola, soy <text style=\"color: red\">Lian Iribarne</text> — Científico de Datos.<br><br>Analizo, transformo y modelo datos para revelar lo que otros no ven.<br>Los datos hablan. Soy quien los interpreta.",
     download_cv: "Descargar CV",
     language: "Idioma",
@@ -44,8 +45,8 @@ const translations = {
     degree_2_desc: "Educación secundaria en el Centro Polivalente de Arte \"Prof. Diana Cotorruelo\" <br>graduación: 10/12/2021",
     skills: "HABILIDADES TÉCNICAS",
     certs: "CERTIFICADOS",
-    p1_title: "Portafolio Web Retro-Futurista",
     desc_detail: "Descripción",
+    p1_title: "Portafolio Web Retro-Futurista",
     p1_desc: "Sitio dividido en frontend y backend.<br><br><text style=\"color: red\">Frontend</text>: Desarrollado con HTML, CSS puro, JavaScript, jQuery y animaciones con GSAP.<br><br><text style=\"color: red\">Backend</text>: Implementado con Django, expone una API segura para el formulario de contacto. Utiliza django-environ para variables de entorno, protección CSRF, configuración de CORS con django-cors-headers y está desplegado en Render.",
     send_message: "Envíame un Mensaje",
     placeholder_name: "Nombre",
@@ -53,6 +54,5 @@ const translations = {
     placeholder_subject: "Asunto",
     placeholder_message: "Mensaje",
     success: "¡Mensaje enviado correctamente!",
-    error: "Ocurrió un error",
   }
 };

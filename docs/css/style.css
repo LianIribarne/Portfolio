@@ -843,7 +843,8 @@ body.scrolling::-webkit-scrollbar-thumb { background: red }
 }
 
 #website {
-  display: none;
+  position: absolute;
+  left: -9999px;
 }
 
 form button {

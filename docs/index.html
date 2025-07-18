@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- Loading -->
-    <div id="loader-breaker"><span class="slash">LOADING</span></div>
+    <div id="loader-breaker"><span class="slash" data-key="loading"></span></div>
 
     <!-- Breaker -->
     <div id="breaker"></div>
@@ -267,7 +267,7 @@
                 <div class="form-header">
                     <h2 data-key="send_message"></h2>
                 </div>
-                <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                <input type="text" name="website" id="website" tabindex="-1" aria-hidden="true">
                 <div class="input-line">
                     <!-- Input name -->
                     <input type="text" class="input-name" name="name" placeholder="Name" data-key="placeholder_name" maxlength="100" />

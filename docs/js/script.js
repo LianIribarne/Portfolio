@@ -94,8 +94,6 @@ $(function () {
     }, 1000)
   });
 
-
-
   $('.navigation-close').on('click', function () {
     $breaker.css('display', 'block');
 
@@ -204,10 +202,11 @@ $(function () {
 // LANGAUGE
 // =========================================
 
-let currentLang = 'en';
+let currentLang = localStorage.getItem('lang') || 'en';
 
 function changeLanguage(lang) {
   currentLang = lang;
+  localStorage.setItem('lang', lang);
 
   const dict = translations[lang];
   const elements = document.querySelectorAll('[data-key]');
@@ -243,6 +242,8 @@ function changeLanguage(lang) {
   const isSpanish = lang === 'es';
   langIcon.src = isSpanish ? "images/flags/usa.webp" : "images/flags/arg.webp";
   langIcon.alt = isSpanish ? 'English' : 'Español';
+
+  document.documentElement.setAttribute("lang", lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -253,11 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
       changeLanguage(newLang);
     });
   }
-
   changeLanguage(currentLang);
 });
 
 
+// =========================================
+// PROJECT CARD
+// =========================================
 document.querySelectorAll('.project-card').forEach(card => {
   const showBtn = card.querySelector('.desc-btn');
   const closeBtn = card.querySelector('.close-desc-btn');
@@ -317,8 +320,9 @@ function showMessage(type, extraInfo = "") {
     ? document.getElementById("form-overlay-success")
     : document.getElementById("form-overlay-error");
   
-  const translation = translations[currentLang][type];
-  el.innerHTML = extraInfo ? `${translation}:<br><br>${extraInfo}` : translation;
+  if (extraInfo) {
+    el.innerHTML = `ERROR<br><br>${extraInfo}`
+  }
 
   el.classList.add("show");
   setTimeout(() => {
@@ -368,7 +372,7 @@ document.getElementById("form").addEventListener("submit", function (e) {
       })
       .then(response => {
         if (!response.ok) return response.json().then(data => {
-          throw new Error(data.error || "Unknown error");
+          throw new Error(data.error?.[currentLang] || "Unknown error");
         });
         return response.json();
       })

@@ -21,11 +21,17 @@ def contact_view(request):
     try:
         data = json.loads(request.body)
     except json.JSONDecodeError:
-        return JsonResponse({'error': 'Invalid data'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Invalid data',
+            'es': 'Datos no válidos'
+        }}, status=400)
     
-    honeypot = data.get('website', '')
+    honeypot = data.get('website', '').strip()
     if honeypot:
-        return JsonResponse({'error': 'Bot detected'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Bot detected',
+            'es': 'Bot detectado'
+        }}, status=400)
 
     name = data.get('name', '').strip()
     email = data.get('email', '').strip()
@@ -33,20 +39,41 @@ def contact_view(request):
     message = data.get('message', '').strip()
 
     if not all([name, email, subject, message]):
-        return JsonResponse({'error': 'Mandatory data is missing'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Mandatory data is missing',
+            'es': 'Faltan datos obligatorios'
+        }}, status=400)
     
     if re.search(r'<[^>]+>', message) or re.search(r'<[^>]+>', name) or re.search(r'<[^>]+>', subject):
-        return JsonResponse({'error': 'The message must not contain HTML tags'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'The message must not contain HTML tags',
+            'es': 'El mensaje no debe contener etiquetas HTML'
+        }}, status=400)
     
     try:
         validate_email(email)
     except ValidationError:
-        return JsonResponse({'error': 'Invalid email'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Invalid email',
+            'es': 'Correo electrónico no válido'
+        }}, status=400)
     
     if len(name) > 100 or len(email) > 100 or len(subject) > 100 or len(message) > 1000:
-        return JsonResponse({'error': 'Too long'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Too long',
+            'es': 'Demasiado largo'
+        }}, status=400)
 
-    body = f"Nombre: {name}\n\nEmail: {email}\n\nMensaje:\n\n{message}"
+    body = (
+        f"📧 Nuevo mensaje del formulario\n"
+        f"{'-'*40}\n"
+        f"👤 Nombre: {name}\n"
+        f"📨 Email: {email}\n"
+        f"📝 Asunto: {subject}\n"
+        f"{'-'*40}\n"
+        f"💬 Mensaje:\n{message}\n"
+        f"{'-'*40}\n"
+    )
 
     try:
         send_mail(
@@ -57,9 +84,15 @@ def contact_view(request):
             fail_silently=False
         )
     except BadHeaderError:
-        return JsonResponse({'error': 'Invalid header found.'}, status=400)
+        return JsonResponse({'error': {
+            'en': 'Invalid header found',
+            'es': 'Encabezado no válido encontrado'
+        }}, status=400)
     except Exception as e:
         logger.error(f"[Email error] {str(e)} from IP {request.META.get('REMOTE_ADDR')}")
-        return JsonResponse({'error': f'Error sending email: {str(e)}'}, status=500)
+        return JsonResponse({'error': {
+            'en': f'Error sending email: {str(e)}',
+            'es': f'Error al enviar el correo electrónico: {str(e)}'
+        }}, status=500)
 
     return JsonResponse({'state': 'Sent'}, status=200)
