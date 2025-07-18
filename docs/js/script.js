@@ -366,7 +366,8 @@ document.getElementById("form").addEventListener("submit", function (e) {
             name: form.elements["name"].value,
             email: form.elements["email"].value,
             subject: form.elements["subject"].value,
-            message: form.elements["message"].value
+            message: form.elements["message"].value,
+            website: document.getElementById("website").value
           })
         });
       })
