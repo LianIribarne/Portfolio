@@ -91,8 +91,8 @@ def contact_view(request):
     except Exception as e:
         logger.error(f"[Email error] {str(e)} from IP {request.META.get('REMOTE_ADDR')}")
         return JsonResponse({'error': {
-            'en': f'Error sending email: {str(e)}',
-            'es': f'Error al enviar el correo electrónico: {str(e)}'
+            'en': f'Error sending email',
+            'es': f'Error al enviar el correo electrónico'
         }}, status=500)
 
     return JsonResponse({'state': 'Sent'}, status=200)
