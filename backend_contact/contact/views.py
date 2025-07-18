@@ -4,10 +4,19 @@ from django.middleware.csrf import get_token
 from django.core.mail import send_mail, BadHeaderError
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from django.core.cache import cache
 from django.conf import settings
-import json, re, logging
+import json, re, logging, time
 
 logger = logging.getLogger('contact')
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 @ensure_csrf_cookie
 def csrf_token_view(request):
@@ -32,6 +41,25 @@ def contact_view(request):
             'en': 'Bot detected',
             'es': 'Bot detectado'
         }}, status=400)
+    
+    ip = get_client_ip(request)
+    key = f"contact_rate_{ip}"
+    last_time = cache.get(key)
+
+    now = time.time()
+    cooldown = 5 * 60
+    time_await = now - last_time if last_time else cooldown + 1
+
+    if time_await < cooldown:
+        remaining = cooldown - time_await
+        minutes_left = int(remaining // 60)
+        seconds_left = int(remaining % 60)
+        return JsonResponse({'error': {
+            'en': f'Please wait {minutes_left} minute{"s" if minutes_left != 1 else ""} and {seconds_left} second{"s" if seconds_left != 1 else ""} before sending another message',
+            'es': f'Por favor, espere {minutes_left} minuto{"s" if seconds_left != 1 else ""} y {seconds_left} segundo{"s" if seconds_left != 1 else ""} antes de enviar otro mensaje'
+        }}, status=429)
+
+    cache.set(key, now, timeout=cooldown)
 
     name = data.get('name', '').strip()
     email = data.get('email', '').strip()

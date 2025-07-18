@@ -70,6 +70,7 @@ html { background: #101010; }
   object-fit: cover;
   display: block;
   transition: filter 0.2s ease;
+  cursor: crosshair;
 }
 
 /* scrollbar */
