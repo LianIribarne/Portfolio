@@ -935,6 +935,10 @@ form button {
     overflow-x: hidden;
     max-width: 100%;
   }
+
+  #loader-breaker {
+    font-size: 3rem;
+  }
   
   .header {
     font-size: 3rem;
