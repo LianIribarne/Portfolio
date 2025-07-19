@@ -56,7 +56,7 @@ def contact_view(request):
         seconds_left = int(remaining % 60)
         return JsonResponse({'error': {
             'en': f'Please wait {minutes_left} minute{"s" if minutes_left != 1 else ""} and {seconds_left} second{"s" if seconds_left != 1 else ""} before sending another message',
-            'es': f'Por favor, espere {minutes_left} minuto{"s" if seconds_left != 1 else ""} y {seconds_left} segundo{"s" if seconds_left != 1 else ""} antes de enviar otro mensaje'
+            'es': f'Por favor, espere {minutes_left} minuto{"s" if minutes_left != 1 else ""} y {seconds_left} segundo{"s" if seconds_left != 1 else ""} antes de enviar otro mensaje'
         }}, status=429)
 
     cache.set(key, now, timeout=cooldown)

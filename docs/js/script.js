@@ -37,9 +37,7 @@ $(window).on('load', function () {
     }
   });
 
-  if (isMobile) {
-    return;
-  }
+  if (isMobile) return;
 
   // =========================================
   // SHINE
